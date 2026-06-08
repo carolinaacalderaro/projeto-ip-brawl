@@ -12,6 +12,10 @@ def main():
 
     running = True
 
+    meu_jogo = Game()
+    
+    meu_jogo.run()
+
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -25,3 +29,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+  
