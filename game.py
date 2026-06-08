@@ -22,9 +22,9 @@ class Game:
         self.running = True
         
         # Instancia o Player 1 do lado esquerdo
-        self.player1 = Player1(32, altura // 2, size = 32)
+        self.player1 = Player1(32, altura // 2)
         # Instancia o Player 2 bem no lado da tela
-        self.player2 = Player2(largura - 64, altura // 2, size = 32)
+        self.player2 = Player2(largura - 64, altura // 2)
         # Instancia o item
         self.cube = Itens(largura // 2, altura // 2)
 

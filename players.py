@@ -25,7 +25,7 @@ class Player1:
         
 
 class Player2():
-    def __init__(self, x, y, size = 40):
+    def __init__(self, x, y, size = 32):
         self.size = size
         self.color = (255, 0, 0) # deixar a cor vermelha
         self.rect = pygame.Rect(x, y, size, size) #posicao x, posicao y, largura, altura
