@@ -1,4 +1,3 @@
-resolucao = (792, 502)
+largura, altura = 792, 502
 
-largura = 792
-altura = 502
+resolucao = (largura, altura)

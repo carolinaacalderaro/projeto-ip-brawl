@@ -14,7 +14,8 @@ class Player1:
         self.hidden = False
 
     def move(self, mapa):
-
+        
+        # Marca a posição segura pra ele voltar se encontrar um obstaculo
         old_x = self.rect.x
         old_y = self.rect.y
 

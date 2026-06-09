@@ -5,10 +5,6 @@ from itens import Itens
 from settings import resolucao, largura, altura
 from mapa import Mapa
 
-
-# =====================================================================
-# CLASSE GAME (Gerenciador do Jogo)
-# =====================================================================
 class Game:
     def __init__(self):
         pygame.init()
