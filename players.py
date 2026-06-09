@@ -1,109 +1,57 @@
 import pygame
 
-class Player1:
 
-    def __init__(self, x, y, size=24):
-
-        self.size = size
-        self.color = (0, 0, 255)
-
-        self.rect = pygame.Rect(x, y, size, size)
-
+class Player:
+    def __init__(self, x, y, color, controls):
+        self.rect = pygame.Rect(x, y, 24, 24)
         self.speed = 1
-
+        self.color = color
+        self.controls = controls
         self.hidden = False
 
     def move(self, mapa):
-        
-        # Marca a posição segura pra ele voltar se encontrar um obstaculo
         old_x = self.rect.x
         old_y = self.rect.y
 
         keys = pygame.key.get_pressed()
 
-        if keys[pygame.K_a]:
+        # movimento direto 
+        if keys[self.controls["left"]]:
             self.rect.x -= self.speed
-
-        if keys[pygame.K_d]:
+        if keys[self.controls["right"]]:
             self.rect.x += self.speed
-
-        if keys[pygame.K_w]:
+        if keys[self.controls["up"]]:
             self.rect.y -= self.speed
-
-        if keys[pygame.K_s]:
+        if keys[self.controls["down"]]:
             self.rect.y += self.speed
 
+        # colisão com parede
         for wall in mapa.walls:
             if self.rect.colliderect(wall):
                 self.rect.x = old_x
                 self.rect.y = old_y
 
+        # colisão com água
         for water in mapa.waters:
             if self.rect.colliderect(water):
                 self.rect.x = old_x
                 self.rect.y = old_y
 
+        # arbusto (esconder)
         self.hidden = False
-
         for bush in mapa.bushes:
             if self.rect.colliderect(bush):
                 self.hidden = True
 
     def draw(self, surface):
-
         if not self.hidden:
             pygame.draw.rect(surface, self.color, self.rect)
 
 
-class Player2:
+class Player1(Player):
+    def __init__(self, x, y):     # cor              # controles
+        super().__init__(x, y, (0, 0, 255), {"left": pygame.K_a, "right": pygame.K_d, "up": pygame.K_w, "down": pygame.K_s})
 
-    def __init__(self, x, y, size=24):
-
-        self.size = size
-        self.color = (255, 0, 0)
-
-        self.rect = pygame.Rect(x, y, size, size)
-
-        self.speed = 1
-
-        self.hidden = False
-
-    def move(self, mapa):
-
-        old_x = self.rect.x
-        old_y = self.rect.y
-
-        keys = pygame.key.get_pressed()
-
-        if keys[pygame.K_LEFT]:
-            self.rect.x -= self.speed
-
-        if keys[pygame.K_RIGHT]:
-            self.rect.x += self.speed
-
-        if keys[pygame.K_UP]:
-            self.rect.y -= self.speed
-
-        if keys[pygame.K_DOWN]:
-            self.rect.y += self.speed
-
-        for wall in mapa.walls:
-            if self.rect.colliderect(wall):
-                self.rect.x = old_x
-                self.rect.y = old_y
-
-        for water in mapa.waters:
-            if self.rect.colliderect(water):
-                self.rect.x = old_x
-                self.rect.y = old_y
-
-        self.hidden = False
-
-        for bush in mapa.bushes:
-            if self.rect.colliderect(bush):
-                self.hidden = True
-
-    def draw(self, surface):
-
-        if not self.hidden:
-            pygame.draw.rect(surface, self.color, self.rect)
+class Player2(Player):
+    def __init__(self, x, y):     # cor              # controles
+        super().__init__(x, y, (255, 0, 0), { "left": pygame.K_LEFT, "right": pygame.K_RIGHT, "up": pygame.K_UP, "down": pygame.K_DOWN})

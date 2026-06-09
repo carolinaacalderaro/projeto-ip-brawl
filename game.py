@@ -21,12 +21,10 @@ class Game:
         self.running = True
         
         # Instancia o Player 1 do lado esquerdo
-        self.player1 = Player1(0, altura // 2)
+        self.player1 = Player1(0, altura // 2.1)
         # Instancia o Player 2 bem no lado da tela
-        self.player2 = Player2(largura, altura // 2)
-        # Instancia o item
-        self.cube = Itens(largura // 2, altura // 2)
-
+        self.player2 = Player2(largura, altura // 2.1)
+        
         self.mapa = Mapa("assets/mapa_brawl.tmx")
 
     def handle_events(self):
@@ -51,9 +49,7 @@ class Game:
         self.screen.fill((30, 30, 30))  # Fundo grafite escuro
 
         self.mapa.draw(self.screen)
-        # Desenha o cube
-
-        self.cube.draw(self.screen)
+        
         # Desenha o jogador
         self.player1.draw(self.screen)
         self.player2.draw(self.screen)
