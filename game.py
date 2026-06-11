@@ -15,7 +15,7 @@ class Game:
         
         # Controlar a taxa de quadros (FPS)
         self.clock = pygame.time.Clock()
-        self.fps = 60
+        self.fps = 30
         self.running = True
         
         # Instancia o Player 1 do lado esquerdo

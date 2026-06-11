@@ -1,20 +1,40 @@
 import pygame
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class Player:
-    def __init__(self, x, y, image_path, controls):
+    def __init__(self, x, y, image, controls):
+        
+        def carregar_frame(nome_arquivo, prop1=40, prop2=80):
+            caminho = os.path.join(BASE_DIR, "assets/shelly", nome_arquivo)
+            img = pygame.image.load(caminho).convert_alpha()
+            return pygame.transform.scale(img, (prop1, prop2))
+        
+        self.walkleft = [carregar_frame('L1.png'), carregar_frame('L2.png')]
+        self.walkright = [carregar_frame('R1.png'), carregar_frame('R2.png')]
+        self.walkup = [carregar_frame('U1.png'), carregar_frame('U2.png')]
+        self.walkdown = [carregar_frame('B1.png'), carregar_frame('B2.png')]
+        self.standing = carregar_frame('shelly.png', 80, 76)
 
-        imagem = pygame.image.load(image_path).convert_alpha()
-
-        self.image = pygame.transform.scale(imagem, (80,76))
-
-        self.rect = self.image.get_rect()
+        self.rect = self.standing.get_rect()
         self.rect.topleft = (x, y)
         self.hitbox = self.rect.inflate(-53, -20)
-        self.speed = 1
+
+        self.speed = 5
         self.controls = controls
         self.hidden = False
 
+        self.left = False
+        self.right = False
+        self.up = False
+        self.down = False
+        self.walkcount = 0
+
+
+
     def move(self, mapa):
+
         old_x = self.hitbox.x
         old_y = self.hitbox.y
 
@@ -23,8 +43,15 @@ class Player:
         # Movimentação horizontal 
         if keys[self.controls["left"]]:
             self.hitbox.x -= self.speed
-        if keys[self.controls["right"]]:
+            self.left = True
+            self.right = False
+        elif keys[self.controls["right"]]:
             self.hitbox.x += self.speed
+            self.right = True
+            self.left = False
+        else:
+            self.left = False
+            self.right = False
 
         colisao_x = False
         for wall in mapa.walls: # testa colisão com paredes
@@ -42,8 +69,14 @@ class Player:
         # Movimentação Vertical
         if keys[self.controls["up"]]:
             self.hitbox.y -= self.speed
-        if keys[self.controls["down"]]:
+            self.up = True
+            self.down = False
+        elif keys[self.controls["down"]]:
             self.hitbox.y += self.speed
+            self.down = True
+            self.up = False
+        else:
+            self.up, self.down = False, False
 
         colisao_y = False
         for wall in mapa.walls:
@@ -74,15 +107,36 @@ class Player:
         self.rect.center = self.hitbox.center
 
     def draw(self, surface):
-        if not self.hidden:
-            surface.blit(self.image, self.rect)
-            
 
+        if self.walkcount + 1 > 30:
+            self.walkcount = 0
+
+        if self.hidden:
+            return
+
+        if self.left:
+            sprite_atual = self.walkleft[self.walkcount // 15]
+            self.walkcount += 1
+        elif self.right:
+            sprite_atual = self.walkright[self.walkcount // 15]
+            self.walkcount += 1
+        elif self.up:
+            sprite_atual = self.walkup[self.walkcount // 15]
+            self.walkcount += 1
+        elif self.down:
+            sprite_atual = self.walkdown[self.walkcount // 15]
+            self.walkcount += 1
+        else:
+            sprite_atual = self.standing
+            self.walkcount = 0
+
+        posicao_alinhada = sprite_atual.get_rect(midbottom=self.rect.midbottom)
+        surface.blit(sprite_atual, posicao_alinhada)
 
 class Player1(Player):
     def __init__(self, x, y):     # cor              # controles
-        super().__init__(x, y, "assets/shelly.png", {"left": pygame.K_a, "right": pygame.K_d, "up": pygame.K_w, "down": pygame.K_s})
+        super().__init__(x, y, 'shelly.png', {"left": pygame.K_a, "right": pygame.K_d, "up": pygame.K_w, "down": pygame.K_s})
 
 class Player2(Player):
     def __init__(self, x, y):     # cor              # controles
-        super().__init__(x, y, "assets/shelly.png", { "left": pygame.K_LEFT, "right": pygame.K_RIGHT, "up": pygame.K_UP, "down": pygame.K_DOWN})
+        super().__init__(x, y, 'shelly.png',{ "left": pygame.K_LEFT, "right": pygame.K_RIGHT, "up": pygame.K_UP, "down": pygame.K_DOWN})
