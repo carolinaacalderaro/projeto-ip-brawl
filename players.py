@@ -1,21 +1,7 @@
 import pygame
-import os
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class Player:
     def __init__(self, x, y, image, controls):
-        
-        def carregar_frame(nome_arquivo, prop1=30, prop2=60):
-            caminho = os.path.join(BASE_DIR, "assets/shelly", nome_arquivo)
-            img = pygame.image.load(caminho).convert_alpha()
-            return pygame.transform.scale(img, (prop1, prop2))
-        
-        self.walkleft = [carregar_frame('L1.png'), carregar_frame('L2.png')]
-        self.walkright = [carregar_frame('R1.png'), carregar_frame('R2.png')]
-        self.walkup = [carregar_frame('U1.png'), carregar_frame('U2.png')]
-        self.walkdown = [carregar_frame('B1.png'), carregar_frame('B2.png')]
-        self.standing = carregar_frame('shelly.png', 65, 60)
 
         self.rect = self.standing.get_rect()
         self.rect.topleft = (x, y)
@@ -30,8 +16,6 @@ class Player:
         self.up = False
         self.down = False
         self.walkcount = 0
-
-
 
     def move(self, mapa):
 
@@ -132,6 +116,12 @@ class Player:
 
         posicao_alinhada = sprite_atual.get_rect(midbottom=self.rect.midbottom)
         surface.blit(sprite_atual, posicao_alinhada)
+
+
+# Acho melhor que,  ao invés de criar essas classes aq embaixo, a gnt pd usar as classes de cada personagem dps para
+# a escolha dos personagens, pq fica dificil conciliar essas classes aq cm as de cada personagem individualmente
+# daí, após a escolha no menu, a gnt faria tp 'player1 = criar_player("Shelly",  x=100, y=200, controls=CONTROLS_P1)'
+# Obs: esses conroles eu fixei em personagens.py
 
 class Player1(Player):
     def __init__(self, x, y):     # cor              # controles

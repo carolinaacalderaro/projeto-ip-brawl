@@ -40,9 +40,6 @@ class Projectile():
     def draw(self, window):#desenho da bala 
         pygame.draw.circle(window, self.color, (int(self.x), int(self.y)), self.radius)
 
-   
-       
-
 class Item:
     def __init__(self, x, y, item_type):
         self.rect = pygame.Rect(x, y, 20, 20)
