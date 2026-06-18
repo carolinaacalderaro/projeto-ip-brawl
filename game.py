@@ -162,9 +162,11 @@ class Game:
             if player.vida < 7:
                 player.vida += 1
         elif item.type == "damage":
-            player.damage_boost += 1
+            if player.damage_boost < 2:
+                player.damage_boost += 1
         elif item.type == "speed":
-            player.speed_boost += 1
+            if player.speed_boost < 3:
+                player.speed_boost += 1
 
     def update(self):
         # Trava os updates se a rodada ou o jogo tiverem acabado
