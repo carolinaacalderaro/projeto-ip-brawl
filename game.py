@@ -7,10 +7,10 @@ from settings import resolucao, largura, altura
 from mapa import Mapa
 
 class Game:
-    def __init__(self,screen):
+    def __init__(self,tela):
         pygame.init()
         
-        self.screen = screen
+        self.screen = tela
         pygame.display.set_caption("Meu Jogo Quadrado")
 
         self.clock = pygame.time.Clock()
