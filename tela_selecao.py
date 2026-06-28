@@ -13,7 +13,7 @@ def escolher_personagens(tela):
 
     fonte_titulo = pygame.font.SysFont("nougat", 40, bold=True)
     fonte_nome = pygame.font.SysFont("nougat", 22, bold=True)
-    fonte_status = pygame.font.SysFont("nougat", 20, bold=True)
+    fonte_status = pygame.font.SysFont("nougat", 22, bold=True)
     fonte_dica = pygame.font.SysFont("nougat", 16)
 
     card_largura, card_altura, espacamento = 130, 170, 20
