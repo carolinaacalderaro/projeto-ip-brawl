@@ -4,10 +4,13 @@ import os
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class Player:
+
+    asset_pasta = "shelly"
+
     def __init__(self, x, y, image, controls):
         
         def carregar_frame(nome_arquivo, prop1=30, prop2=60):
-            caminho = os.path.join(BASE_DIR, "assets/shelly", nome_arquivo)
+            caminho = os.path.join(BASE_DIR, "assets", self.asset_pasta, nome_arquivo)
             img = pygame.image.load(caminho).convert_alpha()
             return pygame.transform.scale(img, (prop1, prop2))
         
@@ -15,7 +18,7 @@ class Player:
         self.walkright = [carregar_frame('R1.png'), carregar_frame('R2.png')]
         self.walkup = [carregar_frame('U1.png'), carregar_frame('U2.png')]
         self.walkdown = [carregar_frame('B1.png'), carregar_frame('B2.png')]
-        self.standing = carregar_frame('shelly.png')
+        self.standing = carregar_frame(image)
 
         self.rect = self.standing.get_rect()
         self.rect.topleft = (x, y)
@@ -129,6 +132,7 @@ class Player:
             sprite_atual = self.standing
             self.walkcount = 0
 
+        
         posicao_alinhada = sprite_atual.get_rect(midbottom=self.rect.midbottom)
         surface.blit(sprite_atual, posicao_alinhada)
 
@@ -185,13 +189,15 @@ class Player:
         self.hitbox = self.rect.inflate(-53, -20)
 
 class Player1(Player):
-    def __init__(self, x, y):
+    def __init__(self, x, y, asset_pasta="shelly", standing_file="shelly.png"):
+        self.asset_pasta = asset_pasta
         super().__init__(x, y, 'shelly.png', {"left": pygame.K_a, "right": pygame.K_d, "up": pygame.K_w, "down": pygame.K_s})
         self.color = (0, 0, 255)
         self.player_num = 1
 
 class Player2(Player):
-    def __init__(self, x, y):
-        super().__init__(x, y, 'shelly.png',{ "left": pygame.K_LEFT, "right": pygame.K_RIGHT, "up": pygame.K_UP, "down": pygame.K_DOWN})
+    def __init__(self, x, y, asset_pasta="shelly", standing_file="shelly.png"):
+        self.asset_pasta = asset_pasta
+        super().__init__(x, y, standing_file,{ "left": pygame.K_LEFT, "right": pygame.K_RIGHT, "up": pygame.K_UP, "down": pygame.K_DOWN})
         self.color = (255, 0, 0)
         self.player_num = 2

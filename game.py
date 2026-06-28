@@ -6,9 +6,10 @@ from players import Player1, Player2
 from itens import Item, Projectile 
 from settings import largura, altura
 from mapa import Mapa
+from personagens import Personagens
 
 class Game:
-    def __init__(self,tela):
+    def __init__(self,tela, p1_personagem="shelly", p2_personagem="shelly"):
         pygame.init()
         
         self.screen = tela
@@ -20,6 +21,12 @@ class Game:
         
         self.player1 = Player1(-1, 205)
         self.player2 = Player2(760, 205)
+
+        dados_p1 = Personagens[p1_personagem]
+        dados_p2 = Personagens[p2_personagem]
+
+        self.player1 = Player1(-1, 205, asset_pasta=dados_p1["asset_pasta"], standing_file=dados_p1["standing_file"])
+        self.player2 = Player2(760, 205, asset_pasta=dados_p2["asset_pasta"], standing_file=dados_p2["standing_file"])
         
         self.mapa = Mapa("assets/mapa_brawl.tmx")
 
