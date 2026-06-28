@@ -191,7 +191,7 @@ class Player:
 class Player1(Player):
     def __init__(self, x, y, asset_pasta="shelly", standing_file="shelly.png"):
         self.asset_pasta = asset_pasta
-        super().__init__(x, y, 'shelly.png', {"left": pygame.K_a, "right": pygame.K_d, "up": pygame.K_w, "down": pygame.K_s})
+        super().__init__(x, y, standing_file, {"left": pygame.K_a, "right": pygame.K_d, "up": pygame.K_w, "down": pygame.K_s})
         self.color = (0, 0, 255)
         self.player_num = 1
 
