@@ -1,5 +1,8 @@
 import pygame
-import math 
+import math
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class Projectile():
     # Adicionado parâmetro 'damage' para computar o boost do jogador
@@ -32,28 +35,26 @@ class Projectile():
     def draw(self, window):
         pygame.draw.circle(window, self.color, (int(self.x), int(self.y)), self.radius)
 
+
 class Item:
     def __init__(self, x, y, item_type):
-        # Tamanho 25x25 para ficar bem visível no mapa
+        # Tamanho estruturado para a colisão do item no mapa 
         self.rect = pygame.Rect(x, y, 25, 25)
         self.type = item_type  # "life", "damage", "speed"
 
         if item_type == "life":
-            self.color = (0, 255, 100)    # Verde claro / Vida
+            nome_arquivo = "orb_vida.png"
         elif item_type == "damage":
-            self.color = (255, 128, 0)    # Laranja / Força
+            nome_arquivo = "orb_dano.png"
         elif item_type == "speed":
-            self.color = (0, 191, 255)    # Azul Ciano / Velocidade
+            nome_arquivo = "orb_velocidade.png"
+
+        caminho = os.path.join(BASE_DIR, "assets", "coletaveis", nome_arquivo)
+        
+        img_original = pygame.image.load(caminho).convert_alpha()
+        
+        self.image = pygame.transform.scale(img_original, (self.rect.width, self.rect.height))
 
     def draw(self, surface):
-        # Desenha o quadrado preenchido
-        pygame.draw.rect(surface, self.color, self.rect)
-        # Desenha uma borda preta fina para dar contraste
-        pygame.draw.rect(surface, (0, 0, 0), self.rect, 2)
-        
-        # Desenha um detalhe interno para identificar visualmente o item
-        font = pygame.font.SysFont(None, 22, bold=True)
-        simbolo = "H" if self.type == "life" else ("D" if self.type == "damage" else "S")
-        texto = font.render(simbolo, True, (255, 255, 255))
-        pos_texto = texto.get_rect(center=self.rect.center)
-        surface.blit(texto, pos_texto)
+        # Desenha a imagem do Orb diretamente na tela utilizando a posição do rect
+        surface.blit(self.image, self.rect)
