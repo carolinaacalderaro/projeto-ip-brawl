@@ -9,5 +9,11 @@ Personagens = {
         "nome": "Piper",
         "asset_pasta": "piper",
         "standing_file": "piper.png",
+        },
+
+    "colt": {
+        "nome": "Colt",
+        "asset_pasta": "colt",
+        "standing_file": "colt.png",
         }}
 
