@@ -112,5 +112,5 @@ def mostrar_tela_inicial(tela):
                 tela.blit(btn_surface, btn_surface.get_rect(center=(largura//2, altura - 40)))
         
         pygame.display.flip()
-        tempo_animacao += 0.1
+        tempo_animacao += 0.2
         clock.tick(30)
