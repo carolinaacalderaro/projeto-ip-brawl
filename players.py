@@ -39,7 +39,7 @@ class Player:
 
         self.spawn_x = x
         self.spawn_y = y
-        self.vida_max = 5
+        self.vida_max = 8
         self.vida = self.vida_max
 
         # munição
@@ -114,23 +114,23 @@ class Player:
         self.rect.center = self.hitbox.center
 
     def draw(self, surface):
-        if self.walkcount + 1 > 30:
+        if self.walkcount + 1 > 20:
             self.walkcount = 0
 
         if self.hidden:
             return
 
         if self.left:
-            sprite_atual = self.walkleft[self.walkcount // 15]
+            sprite_atual = self.walkleft[self.walkcount // 10]
             self.walkcount += 1
         elif self.right:
-            sprite_atual = self.walkright[self.walkcount // 15]
+            sprite_atual = self.walkright[self.walkcount // 10]
             self.walkcount += 1
         elif self.up:
-            sprite_atual = self.walkup[self.walkcount // 15]
+            sprite_atual = self.walkup[self.walkcount // 10]
             self.walkcount += 1
         elif self.down:
-            sprite_atual = self.walkdown[self.walkcount // 15]
+            sprite_atual = self.walkdown[self.walkcount // 10]
             self.walkcount += 1
         else:
             sprite_atual = self.standing
