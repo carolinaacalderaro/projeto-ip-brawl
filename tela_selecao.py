@@ -9,7 +9,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # Constantes de Cores
 COR_BRANCA = (255, 255, 255)
 COR_FUNDO = (15, 15, 20)
-COR_P1 = (60, 140, 255)
+COR_P1 = (0, 255, 255)
 COR_P2 = (255, 80, 80)
 COR_VERDE_CONFIRM = (50, 255, 50)
 
