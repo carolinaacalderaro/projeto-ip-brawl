@@ -185,6 +185,18 @@ Ferramentas:
 * Tiled Map Editor
 
 ---
+# 📷 Capturas de Tela do jogo
+
+<h2>Tela Inicial</h2>
+<img src="assets/tela_inicial.png" width="800">
+
+<h2>Seleção de Personagens</h2>
+<img src="assets/selecao_personagens.png" width="800">
+
+<h2>Gameplay</h2>
+<img src="assets/gameplay.png" width="800">
+
+---
 
 # 🎮 Controles
 
