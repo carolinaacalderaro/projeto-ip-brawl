@@ -23,7 +23,6 @@ def desenhar_texto_contornado(tela, texto, fonte, cor_texto, cor_contorno, x, y)
     tela.blit(surf_texto, surf_texto.get_rect(center=(x, y)))
 
 def carregar_recursos_selecao():
-    """Carrega e retorna fontes e imagens necessárias para a tela de seleção."""
     caminho_fonte = os.path.join(BASE_DIR, "assets", "LilitaOne-Regular.ttf")
     fonte_base = caminho_fonte if os.path.exists(caminho_fonte) else None
 
