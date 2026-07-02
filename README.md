@@ -297,7 +297,3 @@ Este projeto foi desenvolvido com o objetivo de aprofundar conhecimentos em:
 * Design de gameplay competitivo
 
 ---
-
-<p align="center">
-  Feito com Python, Pygame e muito café ☕
-</p>
