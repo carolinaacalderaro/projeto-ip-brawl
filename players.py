@@ -108,7 +108,7 @@ class Player:
                 intersecao = self.hitbox.clip(bush)
                 area_no_arbusto = intersecao.width * intersecao.height
 
-                if area_no_arbusto >= (area_player / 2):
+                if area_no_arbusto >= (area_player / 3):
                     self.hidden = True
 
         self.rect.center = self.hitbox.center
