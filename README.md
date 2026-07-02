@@ -8,10 +8,6 @@
   <strong>Um jogo PvP 1v1 inspirado em Brawl Stars, desenvolvido em Python utilizando Pygame.</strong>
 </p>
 
-<p align="center">
-  Projeto desenvolvido com foco em arquitetura modular, animações, gerenciamento de estados, colisão, mapas interativos e gameplay competitivo local.
-</p>
-
 ---
 
 # 📌 Sobre o Projeto
