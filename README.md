@@ -16,7 +16,7 @@
 
 # 📌 Sobre o Projeto
 
-**Xama no Brawl** é um jogo inspirado em <img alt="Brawl Stars"/> Brawl Stars, desenvolvido inteiramente em **Python** com a biblioteca Pygame.
+**Xama no Brawl** é um jogo inspirado em Brawl Stars, desenvolvido inteiramente em **Python** com a biblioteca Pygame.
 
 O jogo possui uma experiência completa com fluxo de navegação entre telas, seleção de personagens e sistema de combate competitivo local entre dois jogadores.
 
@@ -119,17 +119,17 @@ Sistema implementado:
 
 # 🧠 Mecânicas Implementadas
 
-✔ Sistema de colisão
-✔ Movimento em 8 direções
-✔ Sistema de projéteis
-✔ Sistema de dano
-✔ Sistema de rounds
-✔ Sistema de vitória
-✔ HUD individual dos jogadores
-✔ Sistema de buffs temporários por rodada
-✔ Ocultação em arbustos
-✔ Reinício da partida
-✔ Retorno para seleção de personagens
+* Sistema de colisão
+* Movimento em 8 direções
+* Sistema de projéteis
+* Sistema de dano
+* Sistema de rounds
+* Sistema de vitória
+* HUD individual dos jogadores
+* Sistema de buffs temporários por rodada
+* Ocultação em arbustos
+* Reinício da partida
+* Retorno para seleção de personagens
 
 ---
 
@@ -297,3 +297,7 @@ Este projeto foi desenvolvido com o objetivo de aprofundar conhecimentos em:
 * Design de gameplay competitivo
 
 ---
+
+<p align="center">
+  Feito com Python, Pygame e muito Red Bull Zero Açúcar!
+</p>
